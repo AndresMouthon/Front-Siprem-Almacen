@@ -2,7 +2,7 @@ import { imagenes } from "../../../assets/img/imagenes"
 
 function LeftLogin() {
     return (
-        <div className="flex lg:flex-1 bg-gray-300 dark:bg-gray-950 shadow-lg shadow-black/20 items-center justify-center">
+        <div className="flex lg:flex-1 bg-gray-100 dark:bg-gray-950 shadow-lg shadow-black/20 items-center justify-center">
             <img
                 src={imagenes.fondoLogin}
                 alt="Fondo..."
