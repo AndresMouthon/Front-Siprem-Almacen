@@ -1,7 +1,7 @@
 import { Label, TextInput } from "flowbite-react";
 import { FaCode, FaLock, FaUser } from "react-icons/fa";
 import { imagenes } from "../../../assets/img/imagenes";
-import SpinerUtil from "../../../utils/spinner/SpinerUtil";
+import SpinerUtil from "../../../utils/loadings/spinner/SpinerUtil";
 
 function RightFormLogin({ handleChange, loading, iniciarSesion }: any) {
     return (

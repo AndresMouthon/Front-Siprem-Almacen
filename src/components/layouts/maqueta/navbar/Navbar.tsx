@@ -1,8 +1,16 @@
-import { BarChart2, Bell, Calendar, Database, FileText, Inbox, Layers, LayoutDashboard, Search, Settings, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Archive, Bell, Info, Store } from "lucide-react";
 import { imagenes } from "../../../../assets/img/imagenes";
+import usePermission from "../../../../features/hooks/usePermission";
+import SkeletonNav from "../../../../utils/loadings/skeletons/SkeletonNav";
+import NavItem from "../items/NavItem";
+
+const iconMap: Record<string, { icon: React.ComponentType<any>, color: string, colorIcon?: string }> = {
+    Store: { icon: Store, color: "blue", colorIcon: "#1F2373" },
+    Archive: { icon: Archive, color: "yellow", colorIcon: "#5D592F" },
+};
 
 export function Navbar() {
+    const { data, isLoading } = usePermission();
     return (
         <nav className="bg-white shadow">
             <div className="max-w-7xl mx-auto">
@@ -18,35 +26,26 @@ export function Navbar() {
                         </div>
                     </div>
                 </div>
-
-                <div className="flex items-center justify-between p-2 overflow-x-auto">
-                    <NavItem icon={<LayoutDashboard size={18} />} label="Dashboard" active />
-                    <NavItem icon={<Layers size={18} />} label="Widgets" />
-                    <NavItem icon={<FileText size={18} />} label="Forms" />
-                    <NavItem icon={<Search size={18} />} label="Search" />
-                    <NavItem icon={<Users size={18} />} label="Users" />
-                    <NavItem icon={<BarChart2 size={18} />} label="Analytics" />
-                    <NavItem icon={<Inbox size={18} />} label="Inbox" />
-                    <NavItem icon={<Calendar size={18} />} label="Calendar" />
-                    <NavItem icon={<Database size={18} />} label="Database" />
-                    <NavItem icon={<Settings size={18} />} label="Settings" />
+                <div className="flex items-center justify-start p-2 overflow-x-auto">
+                    {isLoading || !data ? (
+                        <SkeletonNav />
+                    ) : (
+                        <div className="flex flex-row items-center space-x-5">
+                            {data.data_module.map((item: any) => {
+                                const iconData = iconMap[item.icon];
+                                return (
+                                    <NavItem
+                                        key={item.id}
+                                        icon={iconData ? <iconData.icon size={18} color={iconData.colorIcon} /> : <Info size={18} color="#202571" />}
+                                        label={item.name}
+                                        color={iconData ? iconData.color : "#202571"}
+                                    />
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>
-    )
-}
-
-interface NavItemProps {
-    icon: React.ReactNode;
-    label: string;
-    active?: boolean;
-}
-
-function NavItem({ icon, label, active = false }: NavItemProps) {
-    return (
-        <Link to="/" className={`flex flex-col items-center p-2 ${active ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>
-            {icon}
-            <span className="text-xs mt-1">{label}</span>
-        </Link>
-    )
+    );
 }
