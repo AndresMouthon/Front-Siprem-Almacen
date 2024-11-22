@@ -16,7 +16,7 @@ const privates = {
 
 type ObjectKey = keyof typeof privates;
 
-function RenderView({ loading, component }: IProps) {
+function RenderView({ component }: IProps) {
   const nameComponent = component.name as ObjectKey;
   let DynamicComponent;
   if (privates[nameComponent] === undefined) {
@@ -26,7 +26,6 @@ function RenderView({ loading, component }: IProps) {
   }
   return (
     <Suspense fallback={
-      // <Loading isLoading={loading} onClose={() => { }} />
       <div>
         <h1>Loading...</h1>
       </div>

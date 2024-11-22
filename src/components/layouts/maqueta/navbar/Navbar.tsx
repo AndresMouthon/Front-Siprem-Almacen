@@ -38,8 +38,8 @@ export function Navbar() {
                                         key={item.id}
                                         icon={iconData ? <iconData.icon size={18} color={iconData.colorIcon} /> : <Info size={18} color="#202571" />}
                                         label={item.name}
-                                        color={iconData.color}
-                                        hoverColor={iconData.hoverColorIcon}
+                                        color="text-white"
+                                        hoverColor="hover:text-white"
                                     />
                                 );
                             })}

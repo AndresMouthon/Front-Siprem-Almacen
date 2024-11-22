@@ -3,7 +3,6 @@ import { useGetMenuQuery } from "../api/permission/permissionApi";
 import Maqueta from "../components/layouts/maqueta/Maqueta";
 import RenderView from "../components/shared/RenderView";
 import { PermissionGuard } from "../utils/guards/PermissionGuard";
-// import Maqueta from "../components/layouts/maqueta/Maqueta.tsx";
 
 function PrivateRouter() {
     const { data, isLoading, isSuccess } = useGetMenuQuery();

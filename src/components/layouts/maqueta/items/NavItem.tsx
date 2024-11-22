@@ -10,7 +10,7 @@ interface NavItemProps {
 
 function NavItem({ icon, label, color, hoverColor, active = false }: NavItemProps) {
     return (
-        <Link to="/" className={`flex flex-col items-center p-2 ${active ? `${color}` : 'text-white'} ${hoverColor} transition-all duration-300`}>
+        <Link to="/" className={`flex flex-col items-center p-2 ${active ? `text-green-50` : 'text-white'} ${hoverColor} transition-all duration-300`}>
             {icon}
             <span className="text-sm mt-1">{label}</span>
         </Link>
