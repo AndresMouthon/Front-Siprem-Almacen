@@ -5,16 +5,18 @@ interface NavItemProps {
     label: string;
     active?: boolean;
     color: string;
+    hoverColor: string;
 }
 
-function NavItem({ icon, label, color, active = false }: NavItemProps) {
+function NavItem({ icon, label, color, hoverColor, active = false }: NavItemProps) {
     return (
-        <Link to="/" className={`flex flex-col items-center p-2 ${active ? `text-${color}-600` : 'text-blue-950 hover:text-blue-600 transition-all duration-300'}`}>
+        <Link to="/" className={`flex flex-col items-center p-2 ${active ? `${color}` : 'text-white'} ${hoverColor} transition-all duration-300`}>
             {icon}
             <span className="text-sm mt-1">{label}</span>
         </Link>
     );
 }
+
 
 
 export default NavItem
